@@ -2,6 +2,7 @@ const scrapeLinks = require('./utils/scraper');
 const { crawlEvent } = require('./utils/eventEmitter');
 
 let totalPaths = [];
+let map = new Map();
 
 module.exports = async function crawlUrls(paths, depth, http, initialPath) {
 
@@ -18,7 +19,8 @@ module.exports = async function crawlUrls(paths, depth, http, initialPath) {
 }
 
 function saveResults(initialPath) {
-    let map = new Map();
     map.set(initialPath, totalPaths);
     return map;
 }
+
+module.exports = { map };

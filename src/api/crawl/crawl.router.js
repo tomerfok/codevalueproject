@@ -7,7 +7,7 @@ router.post('/', async(req, res, next) => {
         if (depth > 5)
             throw new Error("Maximum depth exceeded");
         crawlCall(req.body);
-        res.send({ message: "Post created succefully", post });
+        res.status(202).send({ message: "Crawler and logged succefully" });
     } catch (err) {
         res.status(400).send(err.message);
     }

@@ -1,23 +1,25 @@
 const { Router } = require('express');
 const router = Router();
-const { getLinks, getLink } = require('./links.controller');
+const { getAllLinks, getLinks } = require('./links.controller');
 
 router.get('/', async(req, res, next) => {
     try {
-        const links = getLinks();
-        res.send({ message: "Links: ", links });
+        const links = getAllLinks();
+        res.status(200).send({ message: "Links: ", links });
     } catch (err) {
-        next(err);
+        res.status(500).send(err);
     }
 });
 
 router.get('/:path', async(req, res, next) => {
     try {
         const { path } = req.params;
-        const links = getLink(path);
-        res.send({ message: "Link:", links });
+        const links = getLinks(path);
+        if (!links)
+            throw new Error("Specified 'path' doesn't exist in the repository");
+        res.status(200).send({ message: "Link:", links });
     } catch (err) {
-        next(err);
+        res.status(404).send(err);
     }
 });
 

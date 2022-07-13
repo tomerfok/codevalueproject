@@ -1,6 +1,6 @@
 const { map } = require('../../crawler');
 
-const getLinks = () => {
+const getAllLinks = () => {
     try {
         return map;
     } catch (err) {
@@ -8,7 +8,7 @@ const getLinks = () => {
     }
 };
 
-const getLink = (path) => {
+const getLinks = (path) => {
     try {
         return map.get(path);
     } catch (err) {
@@ -16,4 +16,4 @@ const getLink = (path) => {
     }
 };
 
-module.exports = { getLinks, getLink };
+module.exports = { getAllLinks, getLinks };

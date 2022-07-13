@@ -1,14 +1,12 @@
 const scrapeLinks = require('./utils/scraper');
-// const linkEvent;
-
-const events = require('events');
+const { crawlEvent } = require('./utils/eventEmitter');
 
 let totalPaths = [];
 
 module.exports = async function crawlUrls(paths, depth, http, initialPath) {
 
     paths = (await Promise.all(paths.map(path => scrapeLinks(path, false)))).flat();
-    events.EventEmitter.emit('crawl_event', paths);
+    crawlEvent.emit('crawl_event', paths);
     totalPaths = [...totalPaths, ...paths];
 
     depth = depth - 1;

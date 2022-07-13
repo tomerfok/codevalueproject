@@ -1,0 +1,16 @@
+{
+    "name": "codevalue-nodejs",
+    "private": true,
+    "scripts": {
+        "start:crawl": "node -r dotenv/config src/crawlTask.js",
+        "start:http": "nodemon src/restApiTask.js"
+    },
+    "dependencies": {
+        "axios": "^0.27.2",
+        "cheerio": "^1.0.0-rc.3",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "dotenv": "^16.0.1"
+    }
+}
